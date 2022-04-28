@@ -7,14 +7,14 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float normalspeed;
     public float runspeed;
+    public Rigidbody2D playermodel_rb;
 
     private Rigidbody2D rb;
     Vector2 movement;
-    Vector2 mousepos;
+ 
 
     private bool isMoving;
 
-    public Camera cam;
 
     private void Start()
     {
@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        mousepos = cam.ScreenToWorldPoint(Input.mousePosition);
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -47,10 +46,7 @@ public class PlayerMovement : MonoBehaviour
             isMoving = false;
         }
         rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
-
-        Vector2 lookdir = mousepos - rb.position;
-        float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        playermodel_rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
     }
     
 }
