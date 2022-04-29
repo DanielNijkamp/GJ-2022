@@ -11,42 +11,86 @@ public class RoomSpawner : MonoBehaviour
     // 3 = left
     // 4 = right
     public bool spawned;
+    private int rand;
+    private int room_rand;
 
     private void Start()
     {
         spawned = false;
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        Invoke("Spawn", 0.1f);
+        Invoke("Spawn", 0.4f);
     }
     public void Spawn()
     {
         if (!spawned)
         {
-            switch (OpeningDirection)
+            room_rand = Random.Range(0, 4);
+            if (room_rand == 0)
             {
-                case 1:
-                    Instantiate(templates.bottomrooms[Random.Range(0, templates.bottomrooms.Length)], transform.position, Quaternion.identity);
-                    break;
-                case 2:
-                    Instantiate(templates.toprooms[Random.Range(0, templates.toprooms.Length)], transform.position, Quaternion.identity);
-                    break;
-                case 3:
-                    Instantiate(templates.leftrooms[Random.Range(0, templates.leftrooms.Length)], transform.position, Quaternion.identity);
-                    break;
-                case 4:
-                    Instantiate(templates.rightrooms[Random.Range(0, templates.rightrooms.Length)], transform.position, Quaternion.identity);
-                    break;
-
+                SpawnCorridor();
+                spawned = true;
             }
-            
+            else
+            {
+                SpawnRoom();
+                spawned = true;
+            }
+             
         }
-        this.spawned = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("SpawnPoint") && collision.GetComponent<RoomSpawner>().spawned)
+        if (collision.CompareTag("SpawnPoint")) 
         {
-            Destroy(this.gameObject);
+            if (collision.GetComponent<RoomSpawner>().spawned == false && spawned == false)
+            {
+                Instantiate(templates.closedroom.gameObject, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+            this.spawned = true;
         }
     }
+   void SpawnCorridor()
+    {
+        if (OpeningDirection == 3 || OpeningDirection == 4)
+        {
+            Instantiate(templates.Corridors[0], transform.position, Quaternion.identity);
+            Instantiate(templates.Floors[1], transform.position, Quaternion.identity);
+        }
+        else if (OpeningDirection == 1 || OpeningDirection == 2)
+        {
+            Instantiate(templates.Corridors[1], transform.position, Quaternion.identity);
+            Instantiate(templates.Floors[2], transform.position, Quaternion.identity);
+        }
+        this.spawned = true;
+        return;
+        
+    }
+    void SpawnRoom()
+    {
+        Instantiate(templates.Floors[0], transform.position, Quaternion.identity);
+        switch (this.OpeningDirection)
+        {
+            case 1:
+                rand = Random.Range(0, templates.bottomrooms.Length - 1);
+                Instantiate(templates.bottomrooms[rand], transform.position, Quaternion.identity);
+                break;
+            case 2:
+                rand = Random.Range(0, templates.toprooms.Length - 1);
+                Instantiate(templates.toprooms[rand], transform.position, Quaternion.identity);
+                break;
+            case 3:
+                rand = Random.Range(0, templates.leftrooms.Length - 1);
+                Instantiate(templates.leftrooms[rand], transform.position, Quaternion.identity);
+                break;
+            case 4:
+                rand = Random.Range(0, templates.rightrooms.Length - 1);
+                Instantiate(templates.rightrooms[rand], transform.position, Quaternion.identity);
+                break;
+        }
+
+        this.spawned = true;
+        return;
+    }
+
 }
