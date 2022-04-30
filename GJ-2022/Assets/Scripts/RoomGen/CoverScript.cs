@@ -37,7 +37,7 @@ public class CoverScript : MonoBehaviour
         CheckedForPlayer = true;
         Covers[0].GetComponent<Animator>().Play("FadeOut");
         Covers.Remove(Covers[0]);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Destroy(object_to_destroy);
         
     }

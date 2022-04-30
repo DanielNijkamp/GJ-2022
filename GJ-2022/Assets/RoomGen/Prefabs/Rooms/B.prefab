@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5608164441724645620}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,6 +247,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4257750692023289409, guid: d6f898c4db5c39f4ea6bbce9b3a05bfe, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2782e7bb92e85f14f86f02e1510c57fc, type: 2}
+    - target: {fileID: 4257750692855952618, guid: d6f898c4db5c39f4ea6bbce9b3a05bfe, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2782e7bb92e85f14f86f02e1510c57fc, type: 2}
+    - target: {fileID: 4257750692982690465, guid: d6f898c4db5c39f4ea6bbce9b3a05bfe, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2782e7bb92e85f14f86f02e1510c57fc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6f898c4db5c39f4ea6bbce9b3a05bfe, type: 3}
 --- !u!4 &8557580821210083802 stripped
