@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1782596706633873532}
+  - component: {fileID: 4450298608489026756}
   m_Layer: 6
   m_Name: TB
   m_TagString: Untagged
@@ -37,6 +38,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4450298608489026756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782596706633873533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6782b8c1072064c918e58fe43e2dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3645809494498593588
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +245,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1782596706633873532}
     m_Modifications:
+    - target: {fileID: 2409108118293031787, guid: d6f898c4db5c39f4ea6bbce9b3a05bfe, type: 3}
+      propertyPath: m_InstanceId
+      value: -674470
+      objectReference: {fileID: 0}
     - target: {fileID: 4257750691969417952, guid: d6f898c4db5c39f4ea6bbce9b3a05bfe, type: 3}
       propertyPath: m_Name
       value: WallX
@@ -346,6 +363,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallYDoor (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4361968187112096770, guid: bc4f7cd1fcd5588479e35d76489fb667, type: 3}
+      propertyPath: m_InstanceId
+      value: -674500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804572232673276524, guid: bc4f7cd1fcd5588479e35d76489fb667, type: 3}
+      propertyPath: m_InstanceId
+      value: -674524
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc4f7cd1fcd5588479e35d76489fb667, type: 3}
 --- !u!4 &3384247481204414272 stripped
@@ -360,6 +385,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1782596706633873532}
     m_Modifications:
+    - target: {fileID: 2409108118293031787, guid: d6f898c4db5c39f4ea6bbce9b3a05bfe, type: 3}
+      propertyPath: m_InstanceId
+      value: -674548
+      objectReference: {fileID: 0}
     - target: {fileID: 4257750691969417952, guid: d6f898c4db5c39f4ea6bbce9b3a05bfe, type: 3}
       propertyPath: m_Name
       value: WallX (1)
@@ -474,6 +503,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallYDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 4361968187112096770, guid: bc4f7cd1fcd5588479e35d76489fb667, type: 3}
+      propertyPath: m_InstanceId
+      value: -674578
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804572232673276524, guid: bc4f7cd1fcd5588479e35d76489fb667, type: 3}
+      propertyPath: m_InstanceId
+      value: -674602
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc4f7cd1fcd5588479e35d76489fb667, type: 3}
 --- !u!4 &3384247480270099574 stripped
@@ -502,7 +539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4023507179275127706, guid: 399a665f2ee60a342b0786fe18044c81, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.009406
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4023507179275127706, guid: 399a665f2ee60a342b0786fe18044c81, type: 3}
       propertyPath: m_LocalRotation.w

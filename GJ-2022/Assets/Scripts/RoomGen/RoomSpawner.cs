@@ -13,9 +13,10 @@ public class RoomSpawner : MonoBehaviour
     public bool spawned;
     private int rand;
     private int room_rand;
-
+    private float waittime = 4f;
     private void Start()
     {
+        Destroy(gameObject, waittime);
         spawned = false;
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         Invoke("Spawn", 0.4f);
@@ -45,6 +46,7 @@ public class RoomSpawner : MonoBehaviour
             if (collision.GetComponent<RoomSpawner>().spawned == false && spawned == false)
             {
                 Instantiate(templates.closedroom.gameObject, transform.position, Quaternion.identity);
+                Instantiate(templates.minimap_prefabs[0], transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
             this.spawned = true;
@@ -56,11 +58,13 @@ public class RoomSpawner : MonoBehaviour
         {
             Instantiate(templates.Corridors[0], transform.position, Quaternion.identity);
             Instantiate(templates.Floors[1], transform.position, Quaternion.identity);
+            Instantiate(templates.MM_Corridors[0], transform.position, Quaternion.identity);
         }
         else if (OpeningDirection == 1 || OpeningDirection == 2)
         {
             Instantiate(templates.Corridors[1], transform.position, Quaternion.identity);
             Instantiate(templates.Floors[2], transform.position, Quaternion.identity);
+            Instantiate(templates.MM_Corridors[1], transform.position, Quaternion.identity);
         }
         this.spawned = true;
         return;
@@ -74,18 +78,22 @@ public class RoomSpawner : MonoBehaviour
             case 1:
                 rand = Random.Range(0, templates.bottomrooms.Length - 1);
                 Instantiate(templates.bottomrooms[rand], transform.position, Quaternion.identity);
+                Instantiate(templates.MM_bottomrooms[rand], transform.position, Quaternion.identity);
                 break;
             case 2:
                 rand = Random.Range(0, templates.toprooms.Length - 1);
                 Instantiate(templates.toprooms[rand], transform.position, Quaternion.identity);
+                Instantiate(templates.MM_toprooms[rand], transform.position, Quaternion.identity);
                 break;
             case 3:
                 rand = Random.Range(0, templates.leftrooms.Length - 1);
                 Instantiate(templates.leftrooms[rand], transform.position, Quaternion.identity);
+                Instantiate(templates.MM_leftrooms[rand], transform.position, Quaternion.identity);
                 break;
             case 4:
                 rand = Random.Range(0, templates.rightrooms.Length - 1);
                 Instantiate(templates.rightrooms[rand], transform.position, Quaternion.identity);
+                Instantiate(templates.MM_rightrooms[rand], transform.position, Quaternion.identity);
                 break;
         }
 

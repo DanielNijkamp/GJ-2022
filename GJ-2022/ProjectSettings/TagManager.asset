@@ -9,6 +9,7 @@ TagManager:
   - Corridor
   - CorridorCheck
   - RoomCover
+  - Minimap_Manager
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - Water
   - UI
   - Walls
-  - 
-  - 
+  - Cover
+  - Minimap
   - 
   - 
   - 
@@ -51,4 +52,10 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 1820470761
+    locked: 0
+  - name: UI
+    uniqueID: 636520839
+    locked: 0
+  - name: Minimap
+    uniqueID: 3770050169
     locked: 0
