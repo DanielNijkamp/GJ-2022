@@ -12,6 +12,7 @@ TagManager:
   - Minimap_Manager
   - Destroyer
   - Entry
+  - PlayerCheck
   layers:
   - Default
   - TransparentFX
