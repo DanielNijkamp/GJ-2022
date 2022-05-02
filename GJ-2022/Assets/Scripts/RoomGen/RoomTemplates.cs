@@ -19,6 +19,8 @@ public class RoomTemplates : MonoBehaviour
 
     public GameObject[] MM_Corridors;
     public GameObject[] Corridors;
+
+    public GameObject[] StartingObjects;
     
     public GameObject[] Floors;
 
@@ -26,7 +28,11 @@ public class RoomTemplates : MonoBehaviour
     public GameObject PlayerIcon;
 
     public List<GameObject> rooms;
+    public List<GameObject> MM_Objects;
+    public List<GameObject> floors;
+    public List<GameObject> decorations;
 
+    private float base_wait_time;
     public float waittime;
     private bool spawnedBoss;
     public GameObject boss;
@@ -34,22 +40,47 @@ public class RoomTemplates : MonoBehaviour
 
     private GameObject playericon;
     private GameObject Player_Object;
+
+    private RoomTemplates roomtemplates;
+
+    private void Awake()
+    {
+        SpawnRoom();
+    }
     private void Start()
     {
-        Player_Object = GameObject.FindGameObjectWithTag("Player");
+        base_wait_time = waittime;
         playericon = Instantiate(PlayerIcon);
+        roomtemplates = FindObjectOfType<RoomTemplates>();
+        Player_Object = GameObject.FindGameObjectWithTag("Player");
     }
     private void Update()
     {
         playericon.transform.position = Player_Object.transform.position;
         if (waittime <= 0 && !spawnedBoss)
         {
-            Instantiate(leveldoor, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
+            Instantiate(roomtemplates.minimap_prefabs[1], rooms[rooms.Count - 1].transform.position, Quaternion.identity);
+            GameObject new_leveldoor = Instantiate(leveldoor, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
+            decorations.Add(new_leveldoor);
             spawnedBoss = true;
         }
         else
         {
             waittime -= Time.deltaTime;
         }
+    }
+    public void SpawnRoom()
+    {
+        foreach (GameObject item in StartingObjects)
+        {
+            Instantiate(item, transform.position, Quaternion.identity);
+        }
+        
+    }
+    public void ResetBossTimer()
+    {
+        waittime = base_wait_time;
+        spawnedBoss = false;
+
     }
 }

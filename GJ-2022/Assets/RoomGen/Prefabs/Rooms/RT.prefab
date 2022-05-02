@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9d14c213b55f346adf1e40fae02cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OpeningDirection: 4
+  OpeningDirection: 3
   spawned: 0
 --- !u!61 &5288312904442646092
 BoxCollider2D:
@@ -309,7 +309,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3049557545061925721, guid: 42f03f3bf40372747b1af8c6e50edc67, type: 3}
       propertyPath: m_InstanceId
-      value: -672768
+      value: -252332
       objectReference: {fileID: 0}
     - target: {fileID: 7053471464578356651, guid: 42f03f3bf40372747b1af8c6e50edc67, type: 3}
       propertyPath: m_RootOrder
@@ -423,11 +423,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4361968187112096770, guid: bc4f7cd1fcd5588479e35d76489fb667, type: 3}
       propertyPath: m_InstanceId
-      value: -672798
+      value: -252362
       objectReference: {fileID: 0}
     - target: {fileID: 7804572232673276524, guid: bc4f7cd1fcd5588479e35d76489fb667, type: 3}
       propertyPath: m_InstanceId
-      value: -672822
+      value: -252386
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc4f7cd1fcd5588479e35d76489fb667, type: 3}
@@ -445,7 +445,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1754582750989360907, guid: d765fe75384eae743a5f54bdf3eae220, type: 3}
       propertyPath: m_InstanceId
-      value: -672876
+      value: -252440
       objectReference: {fileID: 0}
     - target: {fileID: 5182278333330281040, guid: d765fe75384eae743a5f54bdf3eae220, type: 3}
       propertyPath: m_RootOrder
@@ -497,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9178240195297776027, guid: d765fe75384eae743a5f54bdf3eae220, type: 3}
       propertyPath: m_InstanceId
-      value: -672852
+      value: -252416
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d765fe75384eae743a5f54bdf3eae220, type: 3}
@@ -515,7 +515,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2409108118293031787, guid: d6f898c4db5c39f4ea6bbce9b3a05bfe, type: 3}
       propertyPath: m_InstanceId
-      value: -672900
+      value: -252464
       objectReference: {fileID: 0}
     - target: {fileID: 4257750691969417952, guid: d6f898c4db5c39f4ea6bbce9b3a05bfe, type: 3}
       propertyPath: m_Name

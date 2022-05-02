@@ -6,8 +6,6 @@ public class CoverScript : MonoBehaviour
 {
     public GameObject coverprefab;
     public List<GameObject> Covers;
-    public GameObject OldCover;
-    public GameObject NewCover;
 
     public bool CheckedForPlayer;
 

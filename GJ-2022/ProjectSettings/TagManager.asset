@@ -10,6 +10,8 @@ TagManager:
   - CorridorCheck
   - RoomCover
   - Minimap_Manager
+  - Destroyer
+  - Entry
   layers:
   - Default
   - TransparentFX

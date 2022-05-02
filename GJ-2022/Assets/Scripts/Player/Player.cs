@@ -17,8 +17,19 @@ public class Player : MonoBehaviour
 
     public TextMeshProUGUI Health_Text;
     public TextMeshProUGUI Shield_Text;
+
+    private Vector3 startingpos;
+    private Quaternion startingrot;
+    public void ResetPosition()
+    {
+        transform.position = startingpos;
+        transform.rotation = startingrot;
+    }
     private void Awake()
     {
+        startingpos = transform.position;
+        startingrot = transform.rotation;
+
         CurrentHealth = BaseHealth;
         CurrentShield = BaseShield;
 
