@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;
  
 
-    private bool isMoving;
+    //private bool isMoving;
 
 
     private void Start()
@@ -36,15 +36,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (movement.x != 0 || movement.y != 0)
-        {
-            
-            isMoving = true;
-        }
-        else
-        {
-            isMoving = false;
-        }
+        
         rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
         playermodel_rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
     }
