@@ -9,6 +9,6 @@ public class CameraCanvasScript : MonoBehaviour
     {
         Canvas canvas = this.GetComponent<Canvas>();
         canvas.worldCamera = Camera.main;
-        canvas.sortingLayerName = "UI";
+        canvas.sortingLayerName = "Game_UI";
     }
 }

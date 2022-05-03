@@ -8,7 +8,7 @@ using System;
 public class Player : MonoBehaviour
 {
 
-    private bool hasDied = false;
+    public bool hasDied = false;
     public float BaseHealth;
     public float CurrentHealth;
 
@@ -108,7 +108,9 @@ public class Player : MonoBehaviour
     private void Die()
     {
         print("Player has died");
-        FindObjectOfType<GameManager>().SlowDownTime();
+        GameManager manager = FindObjectOfType<GameManager>();
+        manager.SlowDownTime();
+        manager.DeathScreen();
     }
     
 }

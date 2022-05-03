@@ -56,9 +56,12 @@ TagManager:
   - name: Background
     uniqueID: 1820470761
     locked: 0
-  - name: UI
-    uniqueID: 636520839
-    locked: 0
   - name: Minimap
     uniqueID: 3770050169
+    locked: 0
+  - name: Game_UI
+    uniqueID: 636520839
+    locked: 0
+  - name: UI
+    uniqueID: 836077499
     locked: 0
