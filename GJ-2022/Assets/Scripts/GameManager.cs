@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private Animator anim;
@@ -17,8 +17,10 @@ public class GameManager : MonoBehaviour
 
     private Player player;
     public PlayerRotation PlayerRotation;
+    private SoundManager soundmanager;
     private void Start()
     {
+        soundmanager = FindObjectOfType<SoundManager>();
         player = FindObjectOfType<Player>();
         anim = GetComponent<Animator>();
 
@@ -108,11 +110,9 @@ public class GameManager : MonoBehaviour
     }
     public void GoToMainMenu()
     {
-        ResetGameValues();
-    }
-    private void ResetGameValues()
-    {
-
+        soundmanager.StopMusic();
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
     }
     IEnumerator CoolDown()
     {

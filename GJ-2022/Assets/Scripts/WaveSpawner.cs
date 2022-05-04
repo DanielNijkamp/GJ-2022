@@ -11,7 +11,6 @@ public class WaveSpawner : MonoBehaviour
     public GameObject bossroom;
     public GameObject currentroom;
 
-    public GameObject spawnarea;
     public PlayerCheck currentroomscript;
     private bool lockedroom;
     public void StartWave(GameObject currentroom)
@@ -19,7 +18,7 @@ public class WaveSpawner : MonoBehaviour
         x_anim = currentroom.GetComponentsInChildren<Animator>();
         y_anim = currentroom.GetComponentsInChildren<Animator>();
         StartCoroutine(CloseAnim());
-        SpawnEnemies();
+        StartCoroutine(SpawnEnemies());
         
     }
     private void Update()
@@ -77,16 +76,14 @@ public class WaveSpawner : MonoBehaviour
             }
         }
     }
-    public void SpawnEnemies()
+    IEnumerator SpawnEnemies()
     {
-        spawnarea.transform.position = currentroom.transform.position;
         int rand = Random.Range(1, 7);
-        for (int i = 0; i < rand; i++)
+        for (int i = 1; i < rand; i++)
         {
-            GameObject newenemy = Instantiate(enemyprefab, spawnarea.transform.position, Quaternion.identity);
-
+            GameObject newenemy = Instantiate(enemyprefab, currentroom.transform.position, Quaternion.identity);
             currentroomscript.currentenemies.Add(newenemy);
-            
+            yield return new WaitForSecondsRealtime(0.4f);
         }
         currentroomscript.spawnedenemies = true;
     }

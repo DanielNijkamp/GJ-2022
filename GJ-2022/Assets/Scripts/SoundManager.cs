@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
+
+    private static SoundManager soundmanager;
     private bool bgm_muted = false;
     private bool sfx_muted = false;
 
@@ -15,21 +17,52 @@ public class SoundManager : MonoBehaviour
     public Sprite[] BGM_UI;
     public Sprite[] SFX_UI;
 
+    public AudioClip[] BGM;
+    public AudioClip[] SFX;
+
     public Image BGM_Icon;
     public Image SFX_Icon;
 
-    private float bgm_volume = 0.5f;
-    private float sfx_volume = 0.5f;
+    public bool GameStarted;
+
+    private float bgm_volume = 0.1f;
+    private float sfx_volume = 0.1f;
+    private void Start()
+    {
+        StartCoroutine(MainMenuBGM());
+    }
     private void Update()
     {
         bgmsource.volume = bgm_volume;
         sfxsource.volume = sfx_volume;
     }
+    IEnumerator MainMenuBGM()
+    {
+        bgmsource.clip = BGM[0];
+        bgmsource.PlayOneShot(bgmsource.clip);
+        yield return new WaitForSecondsRealtime(bgmsource.clip.length);
+        StartCoroutine(MainMenuBGM());
+    }
+    public IEnumerator StartBGMMusic()
+    {
+        if (GameStarted)
+        {
+            bgmsource.clip = BGM[1];
+            bgmsource.Play(0);
+            yield return new WaitForSecondsRealtime(bgmsource.clip.length);
+            StartCoroutine(StartBGMMusic());
+        }
+    }
+    public void StopMusic()
+    {
+        bgmsource.Stop();
+        GameStarted = true;
+    }
     public void BGM_Button()
     {
         if (bgm_muted) // if muted turn on
         {
-            bgm_volume = 0.5f; 
+            bgm_volume = 0.1f; 
             BGM_Icon.sprite = BGM_UI[1];
             bgm_muted = false;
         }
@@ -44,7 +77,7 @@ public class SoundManager : MonoBehaviour
     {
         if (sfx_muted) // if muted turn on
         {
-            sfx_volume = 0.5f;
+            sfx_volume = 0.1f;
             SFX_Icon.sprite = SFX_UI[1];
             sfx_muted = false;
         }
@@ -53,6 +86,23 @@ public class SoundManager : MonoBehaviour
             sfx_volume = 0f;
             SFX_Icon.sprite = SFX_UI[0];
             sfx_muted = true;
+        }
+    }
+    public void ShootSound()
+    {
+        sfxsource.clip = SFX[0];
+        sfxsource.PlayOneShot(sfxsource.clip);
+    }
+    private void Awake()
+    {
+        if (!soundmanager)
+        {
+            DontDestroyOnLoad(gameObject);
+            soundmanager = this;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }

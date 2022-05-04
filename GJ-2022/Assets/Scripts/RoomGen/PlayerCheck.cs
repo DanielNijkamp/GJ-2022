@@ -26,15 +26,34 @@ public class PlayerCheck : MonoBehaviour
 
             if (!this.transform.parent.gameObject.CompareTag("Entry"))
             {
-                if (!this.isHallway)
+                if (wavespawner.bossroom == null)
                 {
-                    wavespawner.currentroom = this.gameObject;
-                    wavespawner.currentroomscript = this;
-                    wavespawner.StartWave(this.transform.parent.gameObject);
+                    if (!this.isHallway && !spawnedenemies)
+                    {
+                        wavespawner.currentroom = this.gameObject;
+                        wavespawner.currentroomscript = this;
+                        wavespawner.StartWave(this.transform.parent.gameObject);
+                    }
                 }
+                else
+                {
+                    if (this.transform.parent.position == wavespawner.bossroom.transform.position)
+                    {
+                        StartCoroutine(FindObjectOfType<BossScript>().Decision());
+                    }
+                    else
+                    {
+                        if (!this.isHallway && !spawnedenemies)
+                        {
+                            wavespawner.currentroom = this.gameObject;
+                            wavespawner.currentroomscript = this;
+                            wavespawner.StartWave(this.transform.parent.gameObject);
+                        }
+                    }
+                }
+                
             }
         }
-        
     }
    
     

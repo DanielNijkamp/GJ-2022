@@ -30,11 +30,12 @@ public class Player : MonoBehaviour
 
     public GameObject bullet;
     private GameObject playermodel;
-
+    private SoundManager soundmanager;
     void Start()
     {
         playermodel = this.GetComponentInChildren<PlayerRotation>().gameObject;
         InvokeRepeating("ShieldRegeneration", 0, 0.3f);
+        soundmanager = FindObjectOfType<SoundManager>();
     }
     private void Update()
     {
@@ -104,6 +105,7 @@ public class Player : MonoBehaviour
     }
     private void Fire()
     {
+        soundmanager.ShootSound();
         Instantiate(bullet, transform.position, playermodel.transform.rotation);
     }
     private bool CheckShield(float amount) // check if the amount will put the shield amount in the negative

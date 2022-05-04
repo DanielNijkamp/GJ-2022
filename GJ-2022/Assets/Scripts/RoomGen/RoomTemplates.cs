@@ -93,7 +93,8 @@ public class RoomTemplates : MonoBehaviour
         {
             if (wall.transform.position == bossroom.transform.position)
             {
-                Instantiate(roomtemplates.Decoration_Prefabs[0], wall.transform.position, Quaternion.identity);
+                GameObject lights = Instantiate(roomtemplates.Decoration_Prefabs[0], wall.transform.position, Quaternion.identity);
+                decorations.Add(lights);
                 Destroy(wall);
                 print("Removed wall in boss room");
                 break;

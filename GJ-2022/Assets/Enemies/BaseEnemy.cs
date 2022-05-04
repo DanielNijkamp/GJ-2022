@@ -69,8 +69,5 @@ public class BaseEnemy : MonoBehaviour
         wavemanager.currentroomscript.currentenemies.Remove(this.gameObject);
         Destroy(this.gameObject);
     }
-    public void SetPosition(float randX, float randY)
-    {
-        this.transform.position = new Vector2(randX, randY);
-    }
+    
 }

@@ -22,17 +22,16 @@ public class BossScript : MonoBehaviour
 
     private GameObject player;
     private Player playerscript;
-
+    private SoundManager soundmanager;
     private bool clearedbullets = false;
 
     void Start()
     {
-       
+        soundmanager = FindObjectOfType<SoundManager>();
         bosshealth = basehealth;
         health_slider.maxValue = basehealth;
         playerscript = FindObjectOfType<Player>();
         player = playerscript.gameObject;
-        StartCoroutine(Decision());
     }
     private void Update()
     {
@@ -58,7 +57,8 @@ public class BossScript : MonoBehaviour
     }
     private void Die()
     {
-        Instantiate(LevelStairs, this.transform.position, Quaternion.identity);
+        GameObject stairs = Instantiate(LevelStairs, this.transform.position, Quaternion.identity);
+        FindObjectOfType<RoomTemplates>().decorations.Add(stairs);
         Destroy(this.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -68,12 +68,12 @@ public class BossScript : MonoBehaviour
             collision.GetComponent<Player>().DamagePlayer(30f);
         }
     }
-    IEnumerator Decision()
+    public IEnumerator Decision()
     {
         if (!isShooting)
         {
             int rand = Random.Range(0, 2);
-            int rand_bullet_type = Random.Range(0, 3);
+            int rand_bullet_type = Random.Range(0, 4);
             switch (rand)
             {
                 case 0:
@@ -102,6 +102,7 @@ public class BossScript : MonoBehaviour
         {
             BulletOrigin.transform.eulerAngles = new Vector3(0, 0, angle);
             yield return new WaitForSecondsRealtime(time_between_shots);
+            soundmanager.ShootSound();
             Instantiate(bullets[bullettype], BulletOrigin.transform.position, BulletOrigin.transform.rotation);
             angle += scale_amount;
         }

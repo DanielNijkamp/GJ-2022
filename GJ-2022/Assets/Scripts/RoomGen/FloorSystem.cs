@@ -9,9 +9,11 @@ public class FloorSystem : MonoBehaviour
     public float floorlevel;
     public TextMeshProUGUI floor_text;
     public GameObject fadecanvas;
+    private Player player;
 
     private void Start()
     {
+        player = FindObjectOfType<Player>();
         templates = FindObjectOfType<RoomTemplates>();
     }
     public void AdvanceFloor()
@@ -61,6 +63,10 @@ public class FloorSystem : MonoBehaviour
     }
     IEnumerator TransitionFloor()
     {
+        if (player.CurrentHealth < player.BaseHealth)
+        {
+            player.CurrentHealth = player.BaseHealth;
+        }
         //animation
         fadecanvas.GetComponent<Animator>().Play("CanvasFadeIn");
         yield return new WaitForSecondsRealtime(0.55f);
@@ -69,7 +75,16 @@ public class FloorSystem : MonoBehaviour
         //generate level & update UI
         floorlevel += 1;
         ClearFloor();
+        DestroyScene();
         FindObjectOfType<Player>().ResetPosition();
+        yield return new WaitForSecondsRealtime(0.1f);
         templates.SpawnRoom();
+    }
+    public void DestroyScene()
+    {
+        foreach (BaseEnemy enemy in FindObjectsOfType<BaseEnemy>())
+        {
+            Destroy(enemy.gameObject);
+        }
     }
 }
