@@ -15,6 +15,7 @@ public class RoomSpawner : MonoBehaviour
     private int room_rand;
     private void Start()
     {
+        Destroy(this.gameObject, 2f);
         spawned = false;
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         Invoke("Spawn", 0.5f);
@@ -75,6 +76,7 @@ public class RoomSpawner : MonoBehaviour
     }
     void SpawnRoom()
     {
+        Instantiate(templates.Decoration_Prefabs[Random.Range(0, 2)], transform.position, Quaternion.identity);
         Instantiate(templates.Floors[0], transform.position, Quaternion.identity);
         switch (this.OpeningDirection)
         {

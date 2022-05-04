@@ -7,7 +7,7 @@ using System;
 
 public class Player : MonoBehaviour
 {
-
+    bool shieldRegenAllowed = true;
     public bool hasDied = false;
     public float BaseHealth;
     public float CurrentHealth;
@@ -24,12 +24,30 @@ public class Player : MonoBehaviour
     private Vector3 startingpos;
     private Quaternion startingrot;
 
+
+    public float fireRate = 15f;
+    private float nextTimeToFire = 0f;
+
+    public GameObject bullet;
+    private GameObject playermodel;
+
+    void Start()
+    {
+        playermodel = this.GetComponentInChildren<PlayerRotation>().gameObject;
+        InvokeRepeating("ShieldRegeneration", 0, 0.3f);
+    }
     private void Update()
     {
         if (CurrentHealth <= 0 && !hasDied)
         {
             Die();
             hasDied = true;
+        }
+
+        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        {
+            nextTimeToFire = Time.time + 1f / fireRate;
+            Fire();
         }
     }
     public void ResetPosition()
@@ -62,6 +80,7 @@ public class Player : MonoBehaviour
     }
     public void DamagePlayer(float amount)
     {
+        StartCoroutine(DisallowShieldRegenForXSeconds(3.0f));
         if (CurrentShield != 0 || CurrentShield > 0) // check if player still has shield
         {
             if (CheckShield(amount))
@@ -82,6 +101,10 @@ public class Player : MonoBehaviour
         {
             CurrentHealth -= amount;
         }
+    }
+    private void Fire()
+    {
+        Instantiate(bullet, transform.position, playermodel.transform.rotation);
     }
     private bool CheckShield(float amount) // check if the amount will put the shield amount in the negative
     {
@@ -107,12 +130,25 @@ public class Player : MonoBehaviour
     }
     private void Die()
     {
+        CancelInvoke("ShieldRegeneration");
         print("Player has died");
         GameManager manager = FindObjectOfType<GameManager>();
         manager.SlowDownTime();
         manager.DeathScreen();
     }
-    
+    private void ShieldRegeneration()
+    {
+        if (shieldRegenAllowed && (CurrentShield < BaseShield))
+        {
+            CurrentShield += 3;
+        }
+    }
+    IEnumerator DisallowShieldRegenForXSeconds(float delay)
+    {
+        shieldRegenAllowed = false;
+        yield return new WaitForSecondsRealtime(delay);
+        shieldRegenAllowed = true;
+    }
 }
  
 

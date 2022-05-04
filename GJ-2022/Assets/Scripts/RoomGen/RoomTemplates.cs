@@ -23,9 +23,11 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] StartingObjects;
     
     public GameObject[] Floors;
+    public GameObject[] Decoration_Prefabs;
 
     public GameObject closedroom;
     public GameObject PlayerIcon;
+
 
     public List<GameObject> rooms;
     public List<GameObject> MM_Objects;
@@ -42,7 +44,7 @@ public class RoomTemplates : MonoBehaviour
     private GameObject Player_Object;
 
     private RoomTemplates roomtemplates;
-
+    private GameObject bossroom;
     private void Awake()
     {
         SpawnRoom();
@@ -59,9 +61,11 @@ public class RoomTemplates : MonoBehaviour
         playericon.transform.position = Player_Object.transform.position;
         if (waittime <= 0 && !spawnedBoss)
         {
+            bossroom = rooms[rooms.Count - 1].gameObject;
+            FindObjectOfType<WaveSpawner>().bossroom = bossroom;
             Instantiate(roomtemplates.minimap_prefabs[1], rooms[rooms.Count - 1].transform.position, Quaternion.identity);
-            GameObject new_leveldoor = Instantiate(leveldoor, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
-            decorations.Add(new_leveldoor);
+            GameObject gameObject = Instantiate(boss, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
+            PrepareBossRoom();
             spawnedBoss = true;
         }
         else
@@ -82,5 +86,19 @@ public class RoomTemplates : MonoBehaviour
         waittime = base_wait_time;
         spawnedBoss = false;
 
+    }
+    public void PrepareBossRoom()
+    {
+        foreach (GameObject wall in GameObject.FindGameObjectsWithTag("Wall_Deco"))
+        {
+            if (wall.transform.position == bossroom.transform.position)
+            {
+                Instantiate(roomtemplates.Decoration_Prefabs[0], wall.transform.position, Quaternion.identity);
+                Destroy(wall);
+                print("Removed wall in boss room");
+                break;
+                
+            }
+        }
     }
 }

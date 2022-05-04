@@ -16,7 +16,7 @@ public class PlayerRotation : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 lookdir = mousepos - rb.position;
-        float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
+        float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg;
         rb.rotation = angle;
         
     }

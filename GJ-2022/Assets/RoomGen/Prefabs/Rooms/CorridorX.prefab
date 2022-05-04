@@ -313,6 +313,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1132903359086100333}
     m_Modifications:
+    - target: {fileID: 3049557545061925721, guid: 42f03f3bf40372747b1af8c6e50edc67, type: 3}
+      propertyPath: m_InstanceId
+      value: -355306
+      objectReference: {fileID: 0}
     - target: {fileID: 7053471464578356651, guid: 42f03f3bf40372747b1af8c6e50edc67, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -375,6 +379,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1132903359086100333}
     m_Modifications:
+    - target: {fileID: 3049557545061925721, guid: 42f03f3bf40372747b1af8c6e50edc67, type: 3}
+      propertyPath: m_InstanceId
+      value: -355330
+      objectReference: {fileID: 0}
     - target: {fileID: 7053471464578356651, guid: 42f03f3bf40372747b1af8c6e50edc67, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -448,6 +456,10 @@ PrefabInstance:
     - target: {fileID: 1722814940953826462, guid: 399a665f2ee60a342b0786fe18044c81, type: 3}
       propertyPath: m_Offset.x
       value: 0.005830765
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162250110768396859, guid: 399a665f2ee60a342b0786fe18044c81, type: 3}
+      propertyPath: isHallway
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4023507179275127706, guid: 399a665f2ee60a342b0786fe18044c81, type: 3}
       propertyPath: m_RootOrder

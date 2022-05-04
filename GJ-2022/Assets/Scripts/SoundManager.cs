@@ -8,7 +8,9 @@ public class SoundManager : MonoBehaviour
 {
     private bool bgm_muted = false;
     private bool sfx_muted = false;
-    private bool isCoolDown = false;
+
+    public AudioSource bgmsource;
+    public AudioSource sfxsource;
 
     public Sprite[] BGM_UI;
     public Sprite[] SFX_UI;
@@ -18,9 +20,10 @@ public class SoundManager : MonoBehaviour
 
     private float bgm_volume = 0.5f;
     private float sfx_volume = 0.5f;
-    public void test()
+    private void Update()
     {
-        print("test");
+        bgmsource.volume = bgm_volume;
+        sfxsource.volume = sfx_volume;
     }
     public void BGM_Button()
     {
@@ -29,14 +32,12 @@ public class SoundManager : MonoBehaviour
             bgm_volume = 0.5f; 
             BGM_Icon.sprite = BGM_UI[1];
             bgm_muted = false;
-            print("BGM On");
         }
         else // if not muted turn off
         {
             bgm_volume = 0f; 
             BGM_Icon.sprite = BGM_UI[0];
             bgm_muted = true;
-            print("BGM Off");
         }
     }
     public void SFX_Button()
@@ -46,14 +47,12 @@ public class SoundManager : MonoBehaviour
             sfx_volume = 0.5f;
             SFX_Icon.sprite = SFX_UI[1];
             sfx_muted = false;
-            print("SFX On");
         }
         else // if not muted turn off
         {
             sfx_volume = 0f;
             SFX_Icon.sprite = SFX_UI[0];
             sfx_muted = true;
-            print("SFX off");
         }
     }
 }

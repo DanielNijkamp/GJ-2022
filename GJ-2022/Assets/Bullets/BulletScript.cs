@@ -6,13 +6,13 @@ public class BulletScript : MonoBehaviour
 {
     public float bulletSpeed;
     public float bulletdamage;
+    public bool isplayer;
 
-    public string BulletTag;
     [SerializeField] private bool donedamage;
     [SerializeField] private float bulletLifeTime;
-
     private void Start()
     {
+        
         this.donedamage = false;
     }
     private void FixedUpdate()
@@ -25,26 +25,33 @@ public class BulletScript : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(BulletTag))
+        if (!this.donedamage)
         {
-            if (!this.donedamage)
+            if (isplayer)
             {
-               switch (BulletTag)
-               {
-                    case "Player":
-                        collision.GetComponent<Player>().DamagePlayer(bulletdamage);
-                        this.donedamage = true;
-                        Destroy(this.gameObject);
-                        break;
-                    case "Enemy":
-                        // damage enemy
-                        break;
-               }
+                if (collision.CompareTag("Boss"))
+                {
+                    collision.GetComponent<BossScript>().TakeDamage(bulletdamage);
+                    this.donedamage = true;
+                    Destroy(this.gameObject);
+                }
+                if (collision.CompareTag("Enemy"))
+                {
+                    collision.GetComponent<BaseEnemy>().TakeDamage(bulletdamage);
+                    this.donedamage = true;
+                    Destroy(this.gameObject);
+                }
             }
-            
-        }
-        
-        
+            else
+            {
+                if (collision.CompareTag("Player"))
+                {
+                    collision.GetComponent<Player>().DamagePlayer(bulletdamage);
+                    this.donedamage = true;
+                    Destroy(this.gameObject);
+                }
+            }
+        }     
     }
 
 }

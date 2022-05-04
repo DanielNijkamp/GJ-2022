@@ -114,10 +114,6 @@ public class GameManager : MonoBehaviour
     {
 
     }
-    public void Save_Quit()
-    {
-
-    }
     IEnumerator CoolDown()
     {
         isCoolDown = true;

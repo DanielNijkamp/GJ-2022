@@ -13,6 +13,9 @@ TagManager:
   - Destroyer
   - Entry
   - PlayerCheck
+  - Wall_Deco
+  - Enemy
+  - Boss
   layers:
   - Default
   - TransparentFX
